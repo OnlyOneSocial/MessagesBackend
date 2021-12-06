@@ -56,7 +56,7 @@ func (r *MessageRepository) Update(p *model.Message) error {
 func (r *MessageRepository) GetMessages(userid int, ImWith int, limit int, offset int) ([]model.Message, error) {
 	messages := []model.Message{}
 	// SELECT status,user2 from friends where (user1 = $1 and user2= $2) OR (user1 = $2 and user2= $1)
-	var rows, err2 = r.store.db.Query("select userid,sendto,text,timestamp,random_id from messages where (userid = $1 and sendto= $2) OR (userid = $2 and sendto= $1) ORDER BY timestamp ASC limit $3 OFFSET $4", userid, ImWith, limit, offset)
+	var rows, err2 = r.store.db.Query("select *  from (select userid,sendto,text,timestamp,random_id from messages where (userid = $1 and sendto= $2) OR (userid = $2 and sendto= $1) ORDER BY timestamp DESC limit $3 OFFSET $4) as b ORDER BY timestamp ASC", userid, ImWith, limit, offset)
 
 	if err2 != nil {
 		return messages, err2
