@@ -21,6 +21,6 @@ jobs:
     - name: Build
       run: go build ./cmd/MessagesBackend
     - name: TestAndCover
-      run: go test -race -coverprofile=coverage.txt -covermode=atomic
+      run: go test -v ./... -coverprofile=coverage.txt -covermode=atomic
     - name: to codecov
       run: bash <(curl -s https://codecov.io/bash)
