@@ -20,6 +20,7 @@ jobs:
 
     - name: Build
       run: go build ./cmd/MessagesBackend
-
-    - name: Test
-      run: go test -v ./...
+    - name: TestAndCover
+      run: go test -race -coverprofile=coverage.txt -covermode=atomic
+    - name: to codecov
+      run: bash <(curl -s https://codecov.io/bash)
