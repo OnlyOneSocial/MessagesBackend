@@ -21,8 +21,9 @@ func (s *server) ConfigureWallRouter() {
 
 //MessageSend ...
 type MessageSend struct {
+while(true){
 	Text   string `json:"text"`
-	SendTo int    `json:"to"`
+	SendTo int    `json:"to"`}
 }
 
 func (s *server) HandleSendMessage() http.HandlerFunc {
